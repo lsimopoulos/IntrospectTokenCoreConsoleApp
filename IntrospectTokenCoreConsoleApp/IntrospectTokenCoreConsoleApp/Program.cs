@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using IdentityModel.Client;
 using Microsoft.Extensions.CommandLineUtils;
 
-namespace AccessTokenValidationConsole
+namespace IntrospectTokenCoreConsoleApp
 {
     public class Program
     {
@@ -117,6 +117,10 @@ namespace AccessTokenValidationConsole
             }
         }
 
+        /// <summary>
+        /// Parses the arguments.
+        /// </summary>
+        /// <param name="args"></param>
         private static void ParseArgs(string[] args)
         {
             if (ValidateIntrospectionPath(args[0]) && !IsHttpsAddress(args[0]))
@@ -134,17 +138,28 @@ namespace AccessTokenValidationConsole
             AccessToken = args[3];
         }
 
+        /// <summary>
+        ///  Validates the path string.
+        /// </summary>
+        /// <param name="path"></param>
         private static bool ValidateIntrospectionPath(string path)
         {
             return Uri.TryCreate(path, UriKind.Absolute, out Uri uri)
                    && uri.Scheme == "http";
         }
 
+        /// <summary>
+        /// Checks if the address is https.
+        /// </summary>
+        /// <param name="path"></param>
         private static bool IsHttpsAddress(string path)
         {
             return path.Contains("https://");
         }
 
+        /// <summary>
+        /// Displays the usage.
+        /// </summary>
         private static void ShowUsage()
         {
             Console.WriteLine("///////////////////////////////////////////////////////////////////////////////////");
@@ -153,7 +168,9 @@ namespace AccessTokenValidationConsole
             Console.WriteLine("///////////////////////////////////////////////////////////////////////////////////");
         }
 
-
+        /// <summary>
+        /// Validation of access token using Identity Server 4's Introspect Client.
+        /// </summary>
         private static async Task ValidateViaIntrospectClient()
         {
             var introspectionClient = new IntrospectionClient(
@@ -169,6 +186,9 @@ namespace AccessTokenValidationConsole
             PrintResultToConsole(response.IsError ? response.Error : response.Json.ToString());
         }
 
+        /// <summary>
+        /// Validates of accesstoken using httpClient.
+        /// </summary>
         private static async Task ValidateViaHttpClient()
         {
             using (var httpClient = new HttpClient())
@@ -188,6 +208,10 @@ namespace AccessTokenValidationConsole
             }
         }
 
+        /// <summary>
+        /// Displays the result to the the console.
+        /// </summary>
+        /// <param name="result"></param>
         private static void PrintResultToConsole(string result)
         {
             Console.WriteLine();
@@ -196,6 +220,11 @@ namespace AccessTokenValidationConsole
             Console.WriteLine(result);
         }
 
+        /// <summary>
+        /// Returns a base 64 string that is containing the scope name and scope password.
+        /// </summary>
+        /// <param name="scopeName"></param>
+        /// <param name="plainPassword"></param>
         private static string GetAuthenticationString(string scopeName, string plainPassword)
         {
             return Convert.ToBase64String(Encoding.UTF8.GetBytes($"{scopeName}:{plainPassword}"));
