@@ -8,4 +8,10 @@ The purpose of this .Net Core console app is to validate the access token throug
 
 ## Usage
 
-TBD
+Open CMD and navigate to the folder of the project.  Available commnads:
+
+* dotnet run help -- Displays all the available commands and their syntax
+* dotnet run identity help -- Displays a list of arguments that are required for this command
+* dotnet run identity serverAuthorityAddress scopeName scopePassword accessToken -- introspection of the access token using IntrospectionClient of Identity Server 4
+* dotnet run httpclient help -- displays a list of arguments that are required for this command
+* dotnet run httpclient erverAuthorityAddress scopeName scopePassword accessToken -- introspection of the access token using httpclient 
