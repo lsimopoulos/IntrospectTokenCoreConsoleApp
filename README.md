@@ -15,3 +15,4 @@ Open CMD and navigate to the folder of the project.  Available commnads:
 * dotnet run identity serverAuthorityAddress scopeName scopePassword accessToken -- introspection of the access token using IntrospectionClient of Identity Server 4
 * dotnet run httpclient help -- displays a list of arguments that are required for this command
 * dotnet run httpclient erverAuthorityAddress scopeName scopePassword accessToken -- introspection of the access token using httpclient 
+* dotnet run validate serverAuthorityAddress scopeName scopePassword accessToken userId expiresIn clientId -- introspection of the access token without connecting to introspection endpoint.In case of invalid token detailed errors are displayed. 
