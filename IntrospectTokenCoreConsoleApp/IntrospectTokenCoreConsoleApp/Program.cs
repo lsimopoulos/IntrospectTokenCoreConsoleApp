@@ -256,9 +256,6 @@ namespace IntrospectTokenCoreConsoleApp
 
             var authTime = long.Parse(jwt.Claims.First(x => x.Type == "auth_time").Value).ToDateTimeFromEpoch();
 
-            if (!jwt.Audiences.Contains(ScopeName))
-                errors.Add($"The expected scope {ScopeName} was not found on the given token");
-
             if (jwt.ValidTo < DateTime.Now)
                 errors.Add($"The token is expired.  exp : {jwt.ValidTo}");
 
