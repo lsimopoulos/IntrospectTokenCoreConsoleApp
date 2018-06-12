@@ -3,8 +3,9 @@ The purpose of this .Net Core console app is to validate the access token throug
 
 ## Requirements
 
-* .NET CORE 1.1
+* .NET CORE 2.1
 * Identity Server 4 authority server 
+* Indentity Server 3 as well (you need to add '/core' on the end of serverAuthorityAddress)
 
 ## Usage
 
