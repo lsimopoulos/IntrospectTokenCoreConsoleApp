@@ -43,7 +43,7 @@ namespace IntrospectTokenCoreConsoleApp
                 };
                 config.OnExecute(() =>
                 {
-                    var itm = ParseExtraArgsForCustomvalidation(config.Arguments.Select(x => x.Value).ToArray());
+                    var itm = ParseExtraArgsForCustomValidation(config.Arguments.Select(x => x.Value).ToArray());
                     Validation.Manual(itm);
 
                     return 1;
@@ -174,7 +174,7 @@ namespace IntrospectTokenCoreConsoleApp
         ///     Parses the extra arguments that are needed for the custom validation.
         /// </summary>
         /// <param name="args"></param>
-        private static IntrospectionTokenModel ParseExtraArgsForCustomvalidation(string[] args)
+        private static IntrospectionTokenModel ParseExtraArgsForCustomValidation(string[] args)
         {
             var itm = ParseArgs(args);
             itm.UserId = args[4];
